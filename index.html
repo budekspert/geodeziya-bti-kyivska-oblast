@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>БудЕксперт | Геодезія та БТІ: Київ та Київська область | 15+ років досвіду</title>
+    <meta name="description" content="Геодезія та БТІ у Києві та Київській області. Професійне встановлення меж ділянок та легалізація будівництва. Найкращий прайс у регіоні. БудЕксперт - 15 років досвіду.">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --gold: #C9A84C;
+            --gold-light: #E5C777;
+            --black: #000000;
+            --dark: #0A0A0A;
+            --white: #FFFFFF;
+            --gray: #8B8B8B;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        /* Starfield Background */
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            z-index: 0;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* Corner Frames */
+        .corner-frame {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--gold);
+        }
+        
+        .corner-frame.top-left {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-frame.top-right {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .corner-frame.bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .corner-frame.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* Container */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        
+        .logo .bud {
+            color: var(--white);
+        }
+        
+        .logo .ekspert {
+            color: var(--gold);
+        }
+        
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .phone {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .phone:hover {
+            color: var(--gold);
+        }
+        
+        .btn-cta {
+            background: linear-gradient(135deg, #E5C777, #C9A84C);
+            color: var(--black);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(201, 168, 76, 0.3);
+        }
+        
+        .btn-cta:hover {
+            background: linear-gradient(135deg, #F0D591, #E5C777);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.5);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 150px 20px 100px;
+        }
+        
+        .hero .corner-frame {
+            z-index: 2;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-label {
+            color: var(--gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+        
+        .hero h1 .gold {
+            color: var(--gold);
+            font-style: italic;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+        
+        /* Services Section */
+        .services {
+            background: rgba(10, 10, 10, 0.5);
+            position: relative;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-label {
+            color: var(--gold);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: radial-gradient(circle at top left, rgba(201, 168, 76, 0.08), rgba(201, 168, 76, 0.02), rgba(0, 0, 0, 0.3));
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(201, 168, 76, 0.3);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+        
+        .service-description {
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        .service-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .service-list li {
+            padding: 12px 0;
+            color: var(--gray);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+        }
+        
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .price {
+            display: inline-block;
+            background: linear-gradient(135deg, #E5C777, #C9A84C);
+            color: var(--black);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+        }
+        
+        /* Package Section */
+        .package {
+            background: var(--black);
+            position: relative;
+        }
+        
+        .package-card {
+            background: radial-gradient(circle at top center, rgba(201, 168, 76, 0.12), rgba(201, 168, 76, 0.04), rgba(0, 0, 0, 0.2));
+            border: 2px solid rgba(201, 168, 76, 0.5);
+            border-radius: 30px;
+            padding: 60px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(201, 168, 76, 0.2);
+        }
+        
+        .package-badge {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--black);
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .package-card h3 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .package-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        .package-items {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+        
+        .package-items li {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+        }
+        
+        .package-items li:last-child {
+            border-bottom: none;
+        }
+        
+        .package-item-name {
+            color: var(--white);
+        }
+        
+        .package-item-price {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        
+        .package-total {
+            background: rgba(201, 168, 76, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .package-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .package-total-label {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .package-total-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .package-benefits {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .package-benefits li {
+            color: var(--gold);
+            font-size: 0.95rem;
+        }
+        
+        .package-benefits li::before {
+            content: '✓ ';
+            margin-right: 10px;
+        }
+        
+        /* Why Choose Us */
+        .why-choose {
+            background: var(--black);
+            position: relative;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: radial-gradient(circle at top, rgba(201, 168, 76, 0.1), rgba(0, 0, 0, 0.2));
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(201, 168, 76, 0.25);
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+        
+        /* Process Steps */
+        .process {
+            background: var(--black);
+            position: relative;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .step-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: radial-gradient(circle at center, rgba(201, 168, 76, 0.08), rgba(0, 0, 0, 0.3));
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 20px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .step-card:hover {
+            transform: scale(1.05);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.3);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #E5C777, #C9A84C);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin: 0 auto 25px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .step-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+        
+        .step-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: var(--black);
+            position: relative;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: radial-gradient(circle at top left, rgba(201, 168, 76, 0.08), rgba(0, 0, 0, 0.3));
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(201, 168, 76, 0.25);
+        }
+        
+        .stars {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-text {
+            color: var(--white);
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-location {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Map Section */
+        .map-section {
+            background: var(--black);
+            position: relative;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(201, 168, 76, 0.3);
+            box-shadow: 0 10px 40px rgba(201, 168, 76, 0.2);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Form Section */
+        .form-section {
+            background: var(--black);
+            position: relative;
+        }
+        
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: radial-gradient(circle at top, rgba(201, 168, 76, 0.08), rgba(10, 10, 10, 0.9));
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 10px 50px rgba(201, 168, 76, 0.15);
+        }
+        
+        .form-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .form-container .subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 50px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
+        }
+        
+        select option {
+            background: var(--black);
+            color: var(--white);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #E5C777, #C9A84C);
+            color: var(--black);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            box-shadow: 0 8px 25px rgba(201, 168, 76, 0.3);
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #F0D591, #E5C777);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(201, 168, 76, 0.5);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 60px 20px 30px;
+            border-top: 1px solid rgba(201, 168, 76, 0.2);
+            position: relative;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-section h3 {
+            color: var(--gold);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section p, .footer-section li {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .disclaimer {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            padding: 30px;
+            background: rgba(201, 168, 76, 0.1);
+            border-left: 4px solid var(--gold);
+            border-radius: 12px;
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .disclaimer strong {
+            color: var(--gold);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-contact {
+                gap: 15px;
+            }
+            
+            .phone {
+                display: none;
+            }
+            
+            .stats {
+                gap: 30px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .package-card {
+                padding: 40px 25px;
+            }
+            
+            .package-benefits {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-container {
+                padding: 40px 25px;
+            }
+            
+            .corner-frame {
+                width: 50px;
+                height: 50px;
+            }
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Starfield Background -->
+<div class="starfield" id="starfield"></div>
+
+<!-- Header -->
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <span class="bud">Буд</span><span class="ekspert">Експерт</span>
+        </div>
+        <div class="header-contact">
+            <a href="tel:+380961210906" class="phone">096 121 09 06</a>
+            <a href="#form" class="btn-cta">Заявка</a>
+        </div>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="corner-frame top-left"></div>
+    <div class="corner-frame top-right"></div>
+    <div class="corner-frame bottom-left"></div>
+    <div class="corner-frame bottom-right"></div>
+    
+    <div class="hero-content">
+        <div class="hero-label">БудЕксперт</div>
+        <h1>Геодезія та БТІ:<br><span class="gold">Київ та Київська область</span></h1>
+        <p class="hero-subtitle">Професійне встановлення меж ділянок та легалізація будівництва. Найкращий прайс у регіоні та гарантія термінів. БудЕксперт</p>
+        <a href="#form" class="btn-cta">Залишити заявку →</a>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Років досвіду</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5000+</div>
+                <div class="stat-label">Робіт</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">GPS RTK</div>
+                <div class="stat-label">Точність</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section class="services">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Послуги</div>
+            <h2 class="section-title">Що ми робимо?</h2>
+            <p class="section-subtitle">Повний спектр послуг з будівництва та нерухомості — від документів до ключів</p>
+        </div>
+        
+        <div class="services-grid">
+            <!-- БТІ -->
+            <div class="service-card">
+                <div class="service-icon">📋</div>
+                <h3>БТІ</h3>
+                <p class="service-description">Технічна інвентаризація, техпаспорти, поділ будинків</p>
+                <ul class="service-list">
+                    <li>Техпаспорт будинок (до 100 м²)</li>
+                    <li>Поділ будинку</li>
+                    <li>Реєстрація права власності</li>
+                    <li>Поштова адреса: 2,000 грн</li>
+                </ul>
+                <span class="price">7,000 грн</span>
+                <p style="color: var(--gray); font-size: 0.85rem; margin-top: 15px;">✓ Виїзд ✓ Обміри ✓ Консультація</p>
+            </div>
+            
+            <!-- Геодезія -->
+            <div class="service-card">
+                <div class="service-icon">📐</div>
+                <h3>Геодезія</h3>
+                <p class="service-description">Винесення меж земельної ділянки в натуру</p>
+                <ul class="service-list">
+                    <li>Сучасне обладнання</li>
+                    <li>Офіційний акт винесення меж</li>
+                    <li>Встановлення межових знаків</li>
+                    <li>Сертифікований спеціаліст</li>
+                </ul>
+                <span class="price">750 грн за точку</span>
+                <p style="color: var(--gray); font-size: 0.85rem; margin-top: 15px;">✓ Виїзд ✓ Обміри ✓ Консультація</p>
+            </div>
+            
+            <!-- Будівельний паспорт -->
+            <div class="service-card">
+                <div class="service-icon">📜</div>
+                <h3>Будівельний паспорт</h3>
+                <p class="service-description">Ескізний проект для початку будівництва</p>
+                <ul class="service-list">
+                    <li>Плани, фасади, генплан</li>
+                    <li>Прив'язка будинку до ділянки</li>
+                    <li>Детальні розміри кожної будівлі</li>
+                    <li>Виїзд та обміри</li>
+                </ul>
+                <span class="price">20,000 грн</span>
+                <p style="color: var(--gray); font-size: 0.85rem; margin-top: 15px;">✓ Безкоштовна консультація</p>
+            </div>
+            
+            <!-- Схема забудови -->
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <h3>Схема забудови</h3>
+                <p class="service-description">Повний пакет під ключ з реєстрацією</p>
+                <ul class="service-list">
+                    <li>Ескізний проект (плани, фасади)</li>
+                    <li>Прив'язка з детальними розмірами</li>
+                    <li>Реєстрація на будівельному сайті</li>
+                    <li>Витяг з бази будівельної діяльності</li>
+                </ul>
+                <span class="price">20,000 грн під ключ</span>
+                <p style="color: var(--gray); font-size: 0.85rem; margin-top: 15px;">✓ Виїзд ✓ Обміри ✓ Реєстрація</p>
+            </div>
+            
+            <!-- Повідомлення ЦНАП -->
+            <div class="service-card">
+                <div class="service-icon">📢</div>
+                <h3>Повідомлення ЦНАП</h3>
+                <p class="service-description">Повідомлення про початок будівництва</p>
+                <ul class="service-list">
+                    <li>Підготовка документів</li>
+                    <li>Подача в ДАБІ</li>
+                    <li>Реєстрація повідомлення</li>
+                </ul>
+                <span class="price">3,000 грн</span>
+            </div>
+            
+            <!-- Введення в експлуатацію -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="60" height="60" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="goldGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#E5C777;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#C9A84C;stop-opacity:1" />
+                            </linearGradient>
+                            <filter id="glow1">
+                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <!-- Коло фон -->
+                        <circle cx="50" cy="50" r="35" fill="none" stroke="url(#goldGradient1)" stroke-width="4" filter="url(#glow1)"/>
+                        <!-- Галочка -->
+                        <path d="M 30 50 L 45 65 L 70 35" fill="none" stroke="url(#goldGradient1)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow1)"/>
+                    </svg>
+                </div>
+                <h3>Введення в експлуатацію</h3>
+                <p class="service-description">Декларація про готовність об'єкта</p>
+                <ul class="service-list">
+                    <li>Підготовка документів</li>
+                    <li>Реєстрація декларації</li>
+                    <li>Офіційне введення</li>
+                </ul>
+                <span class="price">3,000 грн</span>
+            </div>
+            
+            <!-- Земля -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg width="60" height="60" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="goldGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#E5C777;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#C9A84C;stop-opacity:0.9" />
+                            </linearGradient>
+                            <filter id="glow2">
+                                <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Зовнішнє коло -->
+                        <circle cx="50" cy="50" r="40" fill="none" stroke="url(#goldGradient2)" stroke-width="2" opacity="0.85" filter="url(#glow2)"/>
+                        
+                        <!-- Вертикальні меридіани -->
+                        <ellipse cx="50" cy="50" rx="30" ry="40" fill="none" stroke="url(#goldGradient2)" stroke-width="1" opacity="0.7"/>
+                        <ellipse cx="50" cy="50" rx="15" ry="40" fill="none" stroke="url(#goldGradient2)" stroke-width="1" opacity="0.7"/>
+                        
+                        <!-- Центральна вертикаль -->
+                        <line x1="50" y1="10" x2="50" y2="90" stroke="url(#goldGradient2)" stroke-width="1.5" opacity="0.75" filter="url(#glow2)"/>
+                        
+                        <!-- Горизонтальні паралелі -->
+                        <ellipse cx="50" cy="50" rx="40" ry="15" fill="none" stroke="url(#goldGradient2)" stroke-width="1" opacity="0.7"/>
+                        <ellipse cx="50" cy="50" rx="40" ry="30" fill="none" stroke="url(#goldGradient2)" stroke-width="1" opacity="0.7"/>
+                        
+                        <!-- Екватор (трохи товстіше) -->
+                        <line x1="10" y1="50" x2="90" y2="50" stroke="url(#goldGradient2)" stroke-width="1.5" opacity="0.8" filter="url(#glow2)"/>
+                    </svg>
+                </div>
+                <h3>Земельні послуги</h3>
+                <p class="service-description">Приватизація, кадастр, поділ землі</p>
+                <ul class="service-list">
+                    <li>Приватизація: Індивідуально</li>
+                    <li>Кадастровий номер: 10,000-12,000 грн</li>
+                    <li>Поділ землі: 12,000 грн</li>
+                    <li>Геологія грунтів: 16,000 грн</li>
+                </ul>
+                <span class="price">Від 10,000 грн</span>
+            </div>
+            
+            <!-- Інше -->
+            <div class="service-card">
+                <div class="service-icon">⚖️</div>
+                <h3>Юридичні послуги</h3>
+                <p class="service-description">Супровід угод та консультації</p>
+                <ul class="service-list">
+                    <li>Оцінка нерухомості: 2,000-2,500 грн</li>
+                    <li>Юрконсультація: 1,000 грн (60 хв)</li>
+                    <li>Купівля-продаж: Індивідуально</li>
+                    <li>Узаконення самобуду: Після вивчення</li>
+                </ul>
+                <span class="price">Від 1,000 грн</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="why-choose">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Чому ми</div>
+            <h2 class="section-title">Чому обирають нас?</h2>
+            <p class="section-subtitle">Працюємо чесно, швидко та з гарантією результату</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Працюємо офіційно</h3>
+                <p>Реєстрація всіх документів у державному реєстрі (ЄДЕССБ). Всі послуги повністю легальні та офіційно підтверджені.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Швидкість</h3>
+                <p>Виїзд інженера в день замовлення. Не витрачаємо ваш час на зайві зустрічі — працюємо швидко і ефективно.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Фіксована ціна</h3>
+                <p>Вартість послуг фіксована без прихованих платежів. Ви знаєте точну ціну ще до початку робіт.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Steps -->
+<section class="process">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Як ми працюємо</div>
+            <h2 class="section-title">Етапи роботи</h2>
+            <p class="section-subtitle">Простий шлях від заявки до результату</p>
+        </div>
+        
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Залишаєте заявку</h3>
+                <p>Телефонуєте або заповнюєте форму на сайті. Ми консультуємо та відповідаємо на всі питання.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Виїзд інженера на об'єкт</h3>
+                <p>Інженер виїжджає в зручний для вас час. Проводить обміри, огляд, консультацію на місці.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Виготовлення документації</h3>
+                <p>Готуємо всі необхідні документи, плани, акти. Реєструємо в державних органах.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h3>Отримання готового результату</h3>
+                <p>Передаємо вам готові документи з усіма печатками та підписами. Все під ключ!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Package -->
+<section class="package">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Комплексний пакет</div>
+            <h2 class="section-title">Узаконення під ключ</h2>
+        </div>
+        
+        <div class="package-card">
+            <div class="package-badge">Економія часу</div>
+            <h3>Будинок до 100 м²</h3>
+            <p class="package-subtitle">Житловий/садовий будинок, побудований після 2015 р.</p>
+            
+            <ul class="package-items">
+                <li>
+                    <span class="package-item-name">Будпаспорт / Схема забудови</span>
+                    <span class="package-item-price">20,000 грн</span>
+                </li>
+                <li>
+                    <span class="package-item-name">Повідомлення про початок</span>
+                    <span class="package-item-price">3,000 грн</span>
+                </li>
+                <li>
+                    <span class="package-item-name">БТІ техпаспорт</span>
+                    <span class="package-item-price">7,000 грн</span>
+                </li>
+                <li>
+                    <span class="package-item-name">Введення в експлуатацію</span>
+                    <span class="package-item-price">3,000 грн</span>
+                </li>
+                <li>
+                    <span class="package-item-name">Поштова адреса</span>
+                    <span class="package-item-price">3,000 грн</span>
+                </li>
+                <li>
+                    <span class="package-item-name">Реєстрація права власності</span>
+                    <span class="package-item-price">4,000 грн</span>
+                </li>
+            </ul>
+            
+            <div class="package-total">
+                <div class="package-total-row">
+                    <span class="package-total-label">РАЗОМ:</span>
+                    <span class="package-total-price">41,000 грн</span>
+                </div>
+            </div>
+            
+            <ul class="package-benefits">
+                <li>Безкоштовна консультація на всіх етапах</li>
+                <li>Підказуємо як зекономити час і гроші</li>
+                <li>Збереження нервів та часу</li>
+                <li>Супровід від початку до кінця</li>
+            </ul>
+        </div>
+        
+        <div class="disclaimer">
+            <strong>⚠️ ПРИМІТКА:</strong> Ціни орієнтовні. Точна вартість визначається після вивчення документів.
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Відгуки</div>
+            <h2 class="section-title">Що кажуть клієнти</h2>
+            <p class="section-subtitle">Реальні відгуки від реальних людей</p>
+        </div>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Робили винесення меж ділянки у Василькові. Віталій приїхав день-в-день, все пояснив, встановив кілочки точно по GPS. Дав акт + координати. Ціна як домовлялись. Рекомендую!"</p>
+                <div class="testimonial-author">Андрій Коваленко</div>
+                <div class="testimonial-location">Васильків, жовтень 2025</div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Узаконювали будинок 2012 року під ключ. Віталій взяв всю возню на себе - БТІ, повідомлення, введення в експлуатацію. За 1.5 місяці все готово. Ціна фіксована, без доплат. Дякую!"</p>
+                <div class="testimonial-author">Оксана Петренко</div>
+                <div class="testimonial-location">Біла Церква, вересень 2025</div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Потрібен був терміново техпаспорт для нотаріуса (продаж будинку). Віталій виїхав наступного дня, через 3 дні техпаспорт на руках. Професійно, швидко. Рекомендую всім!"</p>
+                <div class="testimonial-author">Микола Шевченко</div>
+                <div class="testimonial-location">Бориспіль, листопад 2025</div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Робили будівельний паспорт + схему забудови для нового будинку в Обухові. Віталій все розклав по поличках - що, коли, скільки. Документи в ДАБІ зареєстровані. Все чітко, все під ключ!"</p>
+                <div class="testimonial-author">Ірина Мельник</div>
+                <div class="testimonial-location">Обухів, грудень 2025</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Coverage -->
+<section class="map-section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label">Де ми працюємо</div>
+            <h2 class="section-title">Київ та Київська область</h2>
+            <p class="section-subtitle">Працюємо по всій Київській області — від Києва до найвіддаленіших сіл</p>
+        </div>
+        
+        <div class="map-container" style="background: radial-gradient(circle at center, rgba(201, 168, 76, 0.1), rgba(0, 0, 0, 0.5)); display: flex; align-items: center; justify-content: center; padding: 60px; text-align: center;">
+            <div>
+                <h3 style="color: var(--gold); font-size: 2rem; margin-bottom: 30px;">📍 Київська область</h3>
+                <p style="color: var(--white); font-size: 1.2rem; line-height: 2; max-width: 800px;">
+                    <strong>Основні міста:</strong><br>
+                    Київ • Біла Церква • Бориспіль • Бровари • Ірпінь • Буча • Васильків • Вишневе • Обухів • Переяслав • Фастів • Вишгород • Бородянка • Макарів
+                </p>
+                <p style="color: var(--gray); margin-top: 30px; font-size: 1rem;">
+                    Працюємо також у селах, селищах та віддалених населених пунктах Київської області.<br>
+                    Виїзд інженера — в день замовлення або в зручний для вас час.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Form -->
+<section class="form-section" id="form">
+    <div class="container">
+        <div class="form-container">
+            <h2>Залишити заявку</h2>
+            <p class="subtitle">Заповніть форму і ми зв'яжемось протягом 24 годин</p>
+            
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="7a7c94a8-8935-4659-88d0-1e900cb9460b">
+                <input type="hidden" name="subject" value="Нова заявка з БудЕксперт">
+                <input type="hidden" name="from_name" value="БудЕксперт Сайт">
+                
+                <div class="form-group">
+                    <label for="name">Ім'я</label>
+                    <input type="text" name="Імя" id="name" placeholder="Іван" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" name="Телефон" id="phone" placeholder="+38 096..." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="city">Населений пункт</label>
+                    <input type="text" name="Населений_пункт" id="city" placeholder="Васильків, Київська обл." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Послуга</label>
+                    <select name="Послуга" id="service" required>
+                        <option value="">— Оберіть —</option>
+                        <option>Винесення меж (геодезія)</option>
+                        <option>БТІ техпаспорт</option>
+                        <option>Будівельний паспорт</option>
+                        <option>Схема забудови</option>
+                        <option>Повідомлення ЦНАП</option>
+                        <option>Введення в експлуатацію</option>
+                        <option>Кадастровий номер</option>
+                        <option>Приватизація землі</option>
+                        <option>Поділ землі</option>
+                        <option>Узаконення самобуду</option>
+                        <option>Юрконсультація</option>
+                        <option>Комплексний пакет під ключ</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cadastral">Кадастровий номер ділянки</label>
+                    <input type="text" name="Кадастровий_номер" id="cadastral" placeholder="3222487400:04:001:0022 (якщо є)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="comment">Коментар</label>
+                    <textarea name="Коментар" id="comment" placeholder="Будь-яка інформація..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Надіслати заявку →</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>БудЕксперт</h3>
+                <p>Професійні послуги з будівництва та нерухомості в Київській області з 2011 року.</p>
+                <p>Винос меж • Поділ • Кадастр • Приватизація</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Послуги</h3>
+                <ul class="footer-links">
+                    <li><a href="#services">Геодезія та винесення меж</a></li>
+                    <li><a href="#services">БТІ техпаспорти</a></li>
+                    <li><a href="#services">Будівельні паспорти</a></li>
+                    <li><a href="#services">Узаконення самобуду</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакти</h3>
+                <ul class="footer-links">
+                    <li>📧 budekspert.info@gmail.com</li>
+                    <li>📱 +38 096 121 09 06</li>
+                    <li>💬 @vitaliy_bud</li>
+                    <li>🕐 Пн-Нд: 9:00-18:00</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 БудЕксперт. Всі права захищено.</p>
+            <p style="margin-top: 10px;">Фастів • Обухів • Біла Церква • Васильків • Бориспіль • Вся Київська обл.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Create starfield
+function createStarfield() {
+    const starfield = document.getElementById('starfield');
+    const numberOfStars = 200;
+    
+    for (let i = 0; i < numberOfStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        star.style.opacity = Math.random() * 0.7 + 0.3;
+        starfield.appendChild(star);
+    }
+}
+
+createStarfield();
+
+// Smooth scroll for anchors
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
